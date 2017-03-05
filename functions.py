@@ -1,5 +1,6 @@
 import googlemaps
 from datetime import datetime
+import tests
 
 
 def get_time_to_leave(home_address, work_address):
@@ -10,6 +11,8 @@ def get_time_to_leave(home_address, work_address):
                                          work_address,
                                          mode="transit",
                                          departure_time=now)
+
+    tests.is_walking(directions_result)
 
     walking_duration = directions_result[0]['legs'][0]['steps'][0]['duration']['value']
     departure_stop = directions_result[0]['legs'][0]['steps'][1]['transit_details']['departure_stop']['name']
